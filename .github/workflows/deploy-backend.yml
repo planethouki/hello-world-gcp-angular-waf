@@ -28,7 +28,7 @@ jobs:
 
       - name: Set Service Account File
         run: |
-          echo $GCLOUD_SERVICE_KEY > $GOOGLE_APPLICATION_CREDENTIALS
+          echo ${{ secrets.GCP_SA_KEY }} > $GOOGLE_APPLICATION_CREDENTIALS
           wc -l $GOOGLE_APPLICATION_CREDENTIALS
 
       - name: Deploy to Firebase Functions
