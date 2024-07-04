@@ -34,3 +34,4 @@ jobs:
         with:
           path: dist/hello-world-gcp-angular-waf
           destination: wafwaf
+          parent: false
