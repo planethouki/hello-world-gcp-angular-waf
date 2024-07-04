@@ -33,7 +33,7 @@ jobs:
 
       - name: Check Service Account File
         run: |
-          head -n2 $GOOGLE_APPLICATION_CREDENTIALS
+          ls -l
 
       - name: Deploy to Firebase Functions
         run: |
