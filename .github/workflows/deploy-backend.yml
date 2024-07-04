@@ -23,11 +23,6 @@ jobs:
           cd functions
           npm install
 
-      - name: Build project
-        run: |
-          cd functions
-          npm run build
-
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v1
         with:
