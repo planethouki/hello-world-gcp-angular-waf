@@ -31,4 +31,4 @@ jobs:
 
       - name: Upload to Google Cloud Storage
         run: |
-          gsutil -m rsync -r dist/my-angular-project gs://wafwaf
+          gsutil -m rsync -r dist/hello-world-gcp-angular-waf gs://wafwaf
