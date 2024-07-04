@@ -1,0 +1,41 @@
+name: Deploy to Firebase Functions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: |
+          cd functions
+          npm install
+
+      - name: Build project
+        run: |
+          cd functions
+          npm run build
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Deploy to Firebase Functions
+        run: |
+          cd functions
+          npm install -g firebase-tools@11
+          firebase use
+#          firebase deploy --only functions
