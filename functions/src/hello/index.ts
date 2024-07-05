@@ -14,6 +14,7 @@ router.get('/world', async (req, res, next) => {
 app.use('/', router);
 
 export const hello = functions
+  .region('asia-northeast1')
   .runWith({ memory: '128MB',  timeoutSeconds: 2 })
   .https
   .onRequest(app);
