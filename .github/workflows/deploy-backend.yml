@@ -33,7 +33,7 @@ jobs:
 
       - name: Check Service Account File
         run: |
-          ls -l
+          ls -la
 
       - name: Deploy to Firebase Functions
         run: |
