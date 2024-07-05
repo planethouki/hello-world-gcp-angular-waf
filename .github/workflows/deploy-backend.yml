@@ -38,8 +38,6 @@ jobs:
       - name: Deploy to Firebase Functions
         run: |
           npm install -g firebase-tools@11
-          firebase login
-          firebase login:list
           firebase use
           firebase projects:list
           firebase deploy --only functions
