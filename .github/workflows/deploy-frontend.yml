@@ -52,6 +52,6 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           role-session-name: samplerolesession
           aws-region: 'ap-northeast-1'
-      - name: Test S3
+      - name: Upload to AWS S3
         run: |
-          aws s3 ls s3://hello-world-gcp-angular-waf
+          aws s3 sync dist/hello-world-gcp-angular-waf s3://hello-world-gcp-angular-waf --delete
