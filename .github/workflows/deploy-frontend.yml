@@ -1,4 +1,4 @@
-name: Deploy to Google Cloud Storage & Firebase Hosting
+name: Deploy to Google Cloud Storage & Firebase Hosting & AWS S3
 
 on:
   push:
@@ -8,6 +8,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
       - name: Checkout code
@@ -40,3 +44,14 @@ jobs:
         run: |
           npm install -g firebase-tools@11
           firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
+
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-session-name: samplerolesession
+          aws-region: 'asia-southeast-1'
+      - name: Test S3
+        run: |
+          aws s3 ls s3://hello-world-gcp-angular-waf
