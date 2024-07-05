@@ -9,3 +9,4 @@
 // });
 
 export * from './hello';
+export * from './foo';
