@@ -12,7 +12,7 @@ app.use((req, res, next) => {
     return;
   }
 
-  if (forwardedFor.split(',').some(ip => ip.trim() === '34.54.110.179')) {
+  if (forwardedFor.split(',').some((ip: string) => ip.trim() === '34.54.110.179')) {
     next();
   } else {
     res.status(403).send('Forbidden');
