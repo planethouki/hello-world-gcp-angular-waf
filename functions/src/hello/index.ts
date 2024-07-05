@@ -6,6 +6,7 @@ const router = express.Router();
 
 // @ts-ignore
 router.get('/world', async (req, res, next) => {
+  console.log(req.headers);
   res.send({
     message: 'Hello, World!'
   });
