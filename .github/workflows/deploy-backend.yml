@@ -26,6 +26,4 @@ jobs:
       - name: Deploy to Firebase Functions
         run: |
           npm install -g firebase-tools@11
-          firebase use
-          firebase projects:list
           firebase deploy --only functions --token ${{ secrets.FIREBASE_TOKEN }}
