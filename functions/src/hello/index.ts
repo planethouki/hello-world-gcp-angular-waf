@@ -7,7 +7,7 @@ const router = express.Router();
 // @ts-ignore
 router.get('/world', async (req, res, next) => {
   console.log(req.headers);
-  console.log(req.ips);
+  console.log(req.ip);
   res.send({
     message: 'Hello, World!'
   });
