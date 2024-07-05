@@ -43,3 +43,4 @@ jobs:
 
       - name: Delete Service Account File
         run: rm $GOOGLE_APPLICATION_CREDENTIALS
+        continue-on-error: true
