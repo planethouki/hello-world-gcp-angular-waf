@@ -22,7 +22,6 @@ app.use((req, res, next) => {
 // @ts-ignore
 router.get('/world', async (req, res, next) => {
   console.log(req.headers);
-  console.log(req.socket.remoteAddress);
   res.send({
     message: 'Hello, World!'
   });
