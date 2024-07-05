@@ -12,7 +12,15 @@ app.use((req, res, next) => {
     return;
   }
 
-  if (forwardedFor.split(',').some((ip: string) => ip.trim() === '34.54.110.179')) {
+  const forwardedIps = forwardedFor.split(',');
+
+  // x-forwarded-forは偽装が可能
+  // 偽装しない場合、<your-ip>,<load-balancer-ip>の順になる
+  // <your-ip>,<load-balancer-ip>と偽装した場合、<your-ip>,<load-balancer-ip>,<your-ip>の順になった
+  // LoadBalancerは追記するが、Firebase Functionsは追記しない？
+  // <load-balancer-ip>と偽装した場合、<load-balancer-ip>,<your-ip>の順になる
+  // なので、最後の要素が<load-balancer-ip>であるかどうかで判定する
+  if (forwardedIps.length >= 2 && forwardedIps.last().trim() === '34.54.110.179') {
     next();
   } else {
     res.status(403).send('Forbidden');
